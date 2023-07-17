@@ -4,13 +4,12 @@ public class Bank
     private int index=0;
     private String bankName;
     private String branchName;
-    private Account[] accounts;
+    private Account[] accounts=new Account[10];
     public Bank() {}
-    public Bank(String bankName, String branchName,Account[] accounts) 
+    public Bank(String bankName, String branchName) 
     {
         this.bankName = bankName;
         this.branchName = branchName;
-        this.accounts=accounts;
     }
     public String getBankName() {
         return bankName;
@@ -63,7 +62,7 @@ public class Bank
                     throw new RuntimeException("Insufficient balance");
                 }
             }
-            else
+            else if(ttype=='d')
             {
                 if(accounts[i].getAccountNo()==accountNo)
                 {
@@ -73,6 +72,8 @@ public class Bank
                     return true;
                 }
             }
+            else
+            	throw new RuntimeException("Invalid transaction type");
         }
         return false;        
     }
