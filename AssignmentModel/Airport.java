@@ -43,18 +43,22 @@ public class Airport extends Flight
     {
     	if(flights.contains(source) && flights.contains(dest))
     		return true;
-		return false;
+	return false;
     }
     public void bookTicket(String flightId,Traveller traveller)
     {
-    	for(int i=0;i<flights.size();i++)
+    	for(Flight f:flights)
     	{
-    		if(flights.contains(flightId) && (flights.get(i)).getAvailableseats()>0)
+    		if(f.getId().equals(flightId) && f.getAvailableseats()>0)
     		{
-    		travellers.add(traveller);
-    		flights.get(i).setAvailableseats(flights.get(i).getAvailableseats()-1);
+    			traveller.setFlightid(flightId);
+    			travellers.add(traveller);
+    			f.setAvailableseats(getAvailableseats()-1);
+    			System.out.println("Successfull");
     		}
-        }
+    		else
+    			System.out.println("failed");
+    	}
     }
 	
 }
